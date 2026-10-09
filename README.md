@@ -41,12 +41,12 @@ graph LR
 
 ```mermaid
 erDiagram
-    USERS ||--o{ USER_INSTRUMENTS : has
-    INSTRUMENTS ||--o{ USER_INSTRUMENTS : in
-    USERS ||--o{ USER_REPERTOIRE : plays
-    PIECES ||--o{ USER_REPERTOIRE : in
-    USERS ||--o{ INVITATIONS : sends
-    USERS ||--o{ INVITATIONS : receives
+    USERS ||--o{ UI : has
+    INSTRUMENTS ||--o{ UI : in
+    USERS ||--o{ UR : plays
+    PIECES ||--o{ UR : in
+    USERS ||--o{ INV : sends
+    USERS ||--o{ INV : receives
 
     USERS {
         int id PK
@@ -66,7 +66,15 @@ erDiagram
         string composer
         int difficulty
     }
-    INVITATIONS {
+    UI["USER_INSTRUMENTS"] {
+        int user_id FK
+        int instrument_id FK
+    }
+    UR["USER_REPERTOIRE"] {
+        int user_id FK
+        int piece_id FK
+    }
+    INV["INVITATIONS"] {
         int id PK
         int from_user_id FK
         int to_user_id FK
