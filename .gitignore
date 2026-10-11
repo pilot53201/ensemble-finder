@@ -237,3 +237,7 @@ Desktop.ini
 *.tmp
 *.swp
 *~
+
+
+# Alembic
+# (alembic/versions/ коммитим, alembic.ini — тоже)
