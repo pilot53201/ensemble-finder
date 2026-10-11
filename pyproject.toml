@@ -1,12 +1,12 @@
 [project]
 name = "ensemble-finder"
 version = "0.1.0"
-description = "Add your description here"
+description = "Backend service for finding music ensemble partners"
 readme = "README.md"
 authors = [
     { name = "Pilot53201", email = "makeev05.06daniil2003@mail.ru" }
 ]
-requires-python = ">=3.14.8"
+requires-python = ">=3.14"
 dependencies = [
     "alembic>=1.20.0",
     "asyncpg>=0.32.0",
