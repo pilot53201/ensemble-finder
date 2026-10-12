@@ -33,7 +33,7 @@ def _city_match(city_a: str | None, city_b: str | None) -> float:
 
 
 def _instrument_compatibility(inst_a: set[int], inst_b: set[int]) -> float:
-    return 1 - jaccard(inst_a, inst_b)
+    return 1 - jaccard(inst_a, inst_b) if len(inst_a | inst_b) > 0 else 0
 
 
 def _normalize_weights(w: MatchWeights) -> dict[str, float]:
