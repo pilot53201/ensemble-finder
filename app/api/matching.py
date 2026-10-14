@@ -23,7 +23,7 @@ def _to_candidate(user: User) -> MatchCandidate:
 @router.post("/", response_model=MatchResponse)
 async def find_matches(
     payload: MatchRequest,
-    db: AsyncSession = Depends(get_db), # noqa: B008
+    db: AsyncSession = Depends(get_db),  # noqa: B008
 ) -> MatchResponse:
     response = await db.execute(select(User))
     users = response.scalars().all()
