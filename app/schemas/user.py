@@ -2,6 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.schemas.catalog import InstrumentRead, PieceRead
+
 
 class UserCreate(BaseModel):
     name: str = Field(min_length=1, max_length=100)
@@ -19,3 +21,10 @@ class UserRead(BaseModel):
     level: int
     bio: str | None
     created_at: datetime
+
+    pieces: list[PieceRead] = []
+    instruments: list[InstrumentRead] = []
+
+
+class RepertoireUpdate(BaseModel):
+    piece_ids: list[int]
