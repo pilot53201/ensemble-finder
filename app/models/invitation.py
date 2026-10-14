@@ -1,9 +1,13 @@
 from enum import IntEnum
+from typing import TYPE_CHECKING
 
 from sqlalchemy import BigInteger, CheckConstraint, ForeignKey, SmallInteger, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base, BigIntPK, CreatedAtMixin
+
+if TYPE_CHECKING:
+    from app.models import User
 
 
 class InvitationStatus(IntEnum):
@@ -31,3 +35,13 @@ class Invitation(BigIntPK, CreatedAtMixin, Base):
 
     status: Mapped[InvitationStatus] = mapped_column(SmallInteger, default=InvitationStatus.PENDING)
     message: Mapped[str | None] = mapped_column(Text)
+
+    from_user: Mapped[User] = relationship(
+        foreign_keys=[from_user_id],
+        back_populates="sent_invitations",
+    )
+
+    to_user: Mapped[User] = relationship(
+        foreign_keys=[to_user_id],
+        back_populates="received_invitations",
+    )
